@@ -1,0 +1,79 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fswiss\fcharset0 Helvetica-Oblique;
+}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww22860\viewh15360\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 Contexte : 
+\f1\b0 \
+Mise en place et exploitation d\'92un m\'e9canisme type producteur/consommateur.\
+\
+
+\f0\b Pr\'e9-requis : \
+	
+\f1\b0 - programmation Java et concepts OO
+\f0\b \
+	- 
+\f1\b0 avoir une environnement de programmation Java op\'e9rationnel \
+	- connaissance et environnement vous permettant de partager votre code sur GitLab (ligne de commande ou IDE)\
+\
+
+\f0\b Moyens \'e0 disposition :
+\f1\b0 \
+GIT ; Environnement Java ; Mod\'e9lisation UML ; 3 s\'e9ances de TP\
+\
+
+\f0\b Comp\'e9tences vis\'e9es : 
+\f1\b0 \
+M\'e9canismes OO ;  architecture logicielle ; capacit\'e9s d\'92analyse et capacit\'e9 \'e0 justifier ses choix\
+\
+
+\f0\b S\'e9ance n\'b01 :
+\f1\b0 \
+Objectifs : R\'e9aliser en 2h une application 
+\f2\i from scratch
+\f1\i0  et analyser ses limites\
+\
+Cahier des charges :\
+	On souhaite r\'e9aliser un producteur/consommateur organis\'e9 comme une PILE d\'92entiers (et non une file) pour simplifier les choses (le stock ne p\'e9rime pas !). Le stockage d\'92un entier produit s\'92effectue par l\'92instruction PUSH xx, la consommation par POP. On peut d\'e9truire enti\'e8rement le stock par un CLEAR.\
+	La production et consommation s\'92effectue dans un premier temps, uniquement gr\'e2ce au clavier, par la saisie d\'92une instruction permettant soit \
+		- de stocker un entier (produit par vos doigts), \
+		- de consommer le sommet du stock\
+		- de vider le stock\
+	A chaque changement d\'92\'e9tat du stock, on affiche le dernier \'e9l\'e9ment produit et encore stock\'e9, qui sera aussi le premier \'e0 \'eatre consomm\'e9.\
+	Lorsque le stock est plein ou presque et vide ou presque, on affiche un message d\'92alerte.\
+	Enfin, un fichier de log enregistre toutes les op\'e9rations effectu\'e9es sur le stock (PUSH, POP et CLEAR).\
+\
+Consignes : Par bin\'f4mes (un pr\'e9sent, un distant), r\'e9aliser l\'92application pendant les 2h. Pour simplifier, toutes les interactions (affichage, saisie) peuvent se faire par la console). Le code sera partag\'e9 sur GitLab (https://gitlab.com/nicolas.ragot/di4-qlog), dans une branche par bin\'f4me identifi\'e9e de la fa\'e7on suivante : GpX-Nom1-Nom2, X est le n\'b0 de votre groupe.\
+Vous ferez \'e0 la fin le mod\'e8le UML correspondant et analyserez ses avantages et inconv\'e9nients (\'e0 d\'e9poser sur le GIT).\
+\
+
+\f0\b S\'e9ance n\'b02 et 3 :\
+
+\f1\b0 Pr\'e9paration :\
+	On se pose la question de la r\'e9utilisabilit\'e9 de votre code, soit partiellement, soit totalement pour l\'92\'e9tendre. En particulier, ce qui est sous-tendu au probl\'e8me de producteur/consommateur c\'92est qu\'92il peut y avoir plusieurs producteurs, plusieurs consommateurs et des gestions de stock diff\'e9renti\'e9es et que tout cela peut varier au cours du temps. Les notions de responsabilit\'e9, coh\'e9sion et couplage sont donc au coeur du probl\'e8me.\
+	R\'e9pondez aux questions suivantes :\
+		1\'b0 Dans quelles classes devez-vous intervenir (modifier une instruction) si on souhaite supprimer un objet qui \'ab\'a0surveille\'a0\'bb votre stock (par ex. supprimer une alarme, la construction du log., un consommateur,\'85) ?\
+			Vous changez seulement la partie de code qui s\'92occupe de l\'92applicatif ou vous changez d\'92autres m\'e9thodes, classes ?\
+			Devez-vous modifier votre classe de stockage ?\
+		2\'b0 M\'eame question si vous devez rajouter un objet qui affiche tout le contenu du stock.\
+		3\'b0 Est-ce que les m\'e9thodes/classes s\'92occupant des alarmes sont sollicit\'e9es bien plus souvent que n\'e9cessaire ?\
+\
+Consignes : \
+	- d\'e9poser vos r\'e9ponses aux questions pr\'e9c\'e9dentes dans un fichier sur Git\
+	- proposer un mod\'e8le UML qui permette de faciliter les modifications propos\'e9es en 1\'b0 et 2\'b0 (d\'e9poser sur Git)\
+	- r\'e9alisez le codage\
+	- si besoin proposer un mod\'e8le UML qui permette en plus de g\'e9rer les alarmes de diff\'e9rentes fa\'e7ons\
+		- m\'e9thode n\'b0 1 : l\'92utilisateur d\'e9fini sa classe qui analyse chaque modification du stock pour d\'e9finir s\'92il y a besoin d\'92alerter ou non en fonction de ses crit\'e8res (nb d\'92\'e9l\'e9ments restants, nb de places restantes, nb d\'92\'e9l\'e9ments identiques,\'85 Il modifie la partie applicative uniquement pour int\'e9grer sa classe.\
+		- m\'e9thode n\'b02 : l\'92utilisateur poss\'e8de plusieurs m\'e9canismes de gestion d\'92alarmes (gestion simple avec un seuil, gestion comptabilisant le nb d\'92\'e9l\'e9ments produits ou consomm\'e9s par p\'e9riode de temps, analyse du contenu en fonction de facteurs externes\'85) et souhaite pouvoir changer dynamiquement de m\'e9canisme par une commande clavier (SET WARN 1 ou SET WARN 2 par ex.)\
+	- r\'e9alisez le codage\
+\
+
+\f0\b Si vous avez le temps :
+\f1\b0 \
+	- ajouter un autre producteur (un thread qui produit un entier toutes les 20s par ex.), que devez-vous modifier dans votre code ?\
+	- m\'eame question si on veut ajouter un consommateur (un thread qui consomme un entier toutes les Xs o\'f9 x est un nombre entre 5 et 40 par ex.) ?\
+	- remplacer vos affichages par des fen\'eatres (UI).\
+}
